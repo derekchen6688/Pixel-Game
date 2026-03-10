@@ -142,9 +142,24 @@ git push -u origin main
 > **為什麼打不開？**
 > 請先檢查上方 **「Actions」** 分頁，必須看到名為 `Deploy to GitHub Pages` 的任務出現 **綠色勾勾 ✅**（代表編譯成功）後，連結才會生效。如果是黃色圈圈代表正在處理中，請耐心等候約 1 分鐘。
 
+### 🔄 未來如何更新遊戲內容？
+
+當您修改了程式碼（例如改了 CSS 或文字）想更新到線上時，您可以選擇以下 **任一方式**：
+
+#### 方法 A：視覺化操作 (推薦：適合日常生活)
+1.  點擊 VS Code 左側工具列的 **「Source Control」** (長得像分叉的路徑圖示)。
+2.  在 **Message** 欄位輸入這次改了什麼 (例如：`update: 修改標題顏色`)。
+3.  點擊藍色的 **「Commit」** 按鈕。
+4.  最後點擊按鈕變成 **「Sync Changes」**(同步變更)，就完成自動部署了！
+
+#### 方法 B：終端機指令 (推薦：適合喜歡打字或出錯時除錯)
+```bash
+git add .
+git commit -m "您的更新訊息"
+git push
+```
+
 ---
 
 ## 👨‍💻 技術堆疊
-*   前台前端：React 18 + Vite
-*   後端開發：Google Apps Script, Google Sheets
-*   部署工具：GitHub Actions, GitHub Pages
+... (略)

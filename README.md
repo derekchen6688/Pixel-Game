@@ -100,13 +100,19 @@ git push -u origin main
 
 #### 1. 設定加密變數 (Secrets)
 > 這是為了讓線上自動編譯時能讀取到 API。
+
+請依照以下步驟 **重複執行 3 次** (分別建立三個不同的變數)：
+
 1. 點擊上方的 **「⚙️ Settings」** (通常在導覽列最右邊)。
 2. 在左側選單往下找 **Security** 分類，點選 **「Secrets and variables」** -> **「Actions」**。
-3. 點擊綠色的 **「New repository secret」**按鈕。
-4. 依序新增這三個變數：
-    *   **VITE_GOOGLE_APP_SCRIPT_URL**: 您的 Web App URL。
-    *   **VITE_PASS_THRESHOLD**: 過關題數 (如 `3`)。
-    *   **VITE_QUESTION_COUNT**: 抽取題數 (如 `5`)。
+3. 點擊綠色的 **「New repository secret」** 按鈕。
+4. **依序新增以下三個項目**，每次填寫完請按 **Add secret** 存檔：
+
+| 順序 | Name (填入項目名稱) | Secret (填入對應的內容) |
+| :--- | :--- | :--- |
+| **第 1 個** | `VITE_GOOGLE_APP_SCRIPT_URL` | 您的 Google Apps Script 後端網址 |
+| **第 2 個** | `VITE_PASS_THRESHOLD` | 過關題數 (例如填 `3`) |
+| **第 3 個** | `VITE_QUESTION_COUNT` | 每一輪抽取的總題數 (例如填 `5`) |
 
 #### 2. 開啟 GitHub Pages 權限
 1. 同樣在 **「⚙️ Settings」** 頁面。

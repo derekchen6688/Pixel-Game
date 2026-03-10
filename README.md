@@ -2,7 +2,7 @@
 
 這是一款使用 React (Vite) 撰寫的 **像素風 (Pixel Art) 闖關問答遊戲**，並結合 Google Apps Script 與 Google Sheets 作為無伺服器 (Serverless) 的題庫提供與成績記錄後端。
 
-遊戲具有濃厚的 2000 年代街機風格 (Arcade Style)，結合了 CRT 螢幕掃描線特效、像素字體 (Press Start 2P) 以及隨機產生的像素關主圖片，帶給玩家復古有趣的遊戲體驗。
+遊戲具有濃後的 2000 年代街機風格 (Arcade Style)，結合了 CRT 螢幕掃描線特效、像素字體 (Press Start 2P) 以及隨機產生的像素關主圖片，帶給玩家復古有趣的遊戲體驗。
 
 ![Game Screenshot](./screenshot.png) <!-- (如果有截圖可放於此) -->
 
@@ -18,6 +18,8 @@
 1. 在專案根目錄中，請參考 **`.env.example`** 檔。
 2. 建立新檔案命名為 **`.env`**。
 3. 把內容依照您的需求填入（例如您的 GAS 網址）。
+> [!CAUTION]
+> **絕對不要** 將 `.env` 檔案上傳到 GitHub，裡面包含您的私密 API 網址。本專案已設定 `.gitignore` 來自動過濾它。
 
 ### 3. 安裝與執行
 在終端機 (VS Code Terminal) 執行：
@@ -30,7 +32,27 @@ npm run dev
 
 ## 🛠️ Google Sheets & Backend 佈署指南
 
-...(請參考本專案 `gas/Code.gs` 內的註解或原本的說明)...
+為了讓遊戲能正常運作，您需要配置試算表作為資料庫。
+
+### 步驟 A. 建立 Google 試算表
+建立一份新的 Google 試算表，請精準建立以下**兩個工作表 (Sheet)**：
+
+1. **工作表「`題目`」**
+   * 第一列標題需為：**`題號`**、**`題目`**、**`A`**、**`B`**、**`C`**、**`D`**、**`解答`**。
+
+   | 題號 | 題目 | A | B | C | D | 解答 |
+   |:---|:---|:---|:---|:---|:---|:---|
+   | 1 | 範例題目 1？ | 選項 A | 選項 B | 選項 C | 選項 D | B |
+
+2. **工作表「`回答`」**
+   * 第一列標題需為：**`ID`**、**`闖關次數`**、**`總分`**、**`最高分`**、**`第一次通關分數`**、**`花了幾次通關`**、**`最近遊玩時間`**。 (系統會自動填入，保持第一列標題即可)
+
+### 步驟 B. 部署 Apps Script
+1. 在試算表點選：「**擴充功能**」 -> 「**Apps Script**」。
+2. 將本專案 `gas/Code.gs` 內容覆蓋貼上。
+3. 點擊 **「部署」** -> **「新增部署作業」**，類型選擇 **「網頁應用程式」**。
+4. **設定**：執行身分為「我」，誰可以存取為「所有人」。
+5. 部署後，複製獲得的 **`Web App URL`**。
 
 ---
 
@@ -41,12 +63,11 @@ npm run dev
 ### 第一階段：在 GitHub 建立儲存庫 (Repository)
 
 1.  登入您的 [GitHub](https://github.com/) 帳號。
-2.  點擊左側綠色的 **「Create repository」** 按鈕。
+2.  點擊網頁左側綠色的 **「Create repository」** 按鈕（或右上角 **+** 號下方的 **New repository**）。
 3.  **Repository name**：輸入 `Pixel-Game`。
-4.  **重要建議**：
+4.  **重要建議 (避免衝突)**：
     *   **Visibility**: 選擇 **Public**。
-    *   **Add README**: 保持 **不要勾選** (Off)。
-    *   **.gitignore / License**: 保持 **None**。
+    *   **Add README / .gitignore / License**: 全部保持 **不勾選 (None/Off)**。
 5.  點擊最下方的綠色按鈕 **「Create repository」**。
 
 ### 第二階段：將程式碼從電腦上傳到 GitHub
@@ -57,7 +78,7 @@ npm run dev
 # 1. 初始化
 git init
 
-# 2. 加入檔案 (會自動讀取我幫您寫好的 .gitignore)
+# 2. 加入檔案
 git add .
 
 # 3. 提交變更
@@ -66,7 +87,7 @@ git commit -m "Initial commit with deployment workflows"
 # 4. 強制分支名稱為 main
 git branch -M main
 
-# 5. 連接遠端位址
+# 5. 連接遠端位址 (請將 derekchen6688 換成您的帳號)
 git remote add origin https://github.com/derekchen6688/Pixel-Game.git
 
 # 6. 上傳程式碼
@@ -75,27 +96,28 @@ git push -u origin main
 
 ### 第三階段：GitHub 網頁後台設定 (Secrets & Pages)
 
-上傳完成後，請回到您的 GitHub 專案網頁，進行最後的關鍵設定：
+上傳完成後，請回到 GitHub 網頁進到您的專案：
 
 #### 1. 設定加密變數 (Secrets)
-> 這是為了讓線上自動編譯時能讀取到您的 API 網址。
-1. 點擊上方的 **「⚙️ Settings」** (Insights 的右邊)。
-2. 在左側選單捲動到 **Security** 區塊，點開 **「Secrets and variables」** -> **「Actions」**。
-3. 點擊綠色的 **「New repository secret」**。
+> 這是為了讓線上自動編譯時能讀取到 API。
+1. 點擊上方的 **「⚙️ Settings」** (通常在導覽列最右邊)。
+2. 在左側選單往下找 **Security** 分類，點選 **「Secrets and variables」** -> **「Actions」**。
+3. 點擊綠色的 **「New repository secret」**按鈕。
 4. 依序新增這三個變數：
-    *   **VITE_GOOGLE_APP_SCRIPT_URL**: 您的 GAS 網址。
+    *   **VITE_GOOGLE_APP_SCRIPT_URL**: 您的 Web App URL。
     *   **VITE_PASS_THRESHOLD**: 過關題數 (如 `3`)。
     *   **VITE_QUESTION_COUNT**: 抽取題數 (如 `5`)。
 
 #### 2. 開啟 GitHub Pages 權限
 1. 同樣在 **「⚙️ Settings」** 頁面。
 2. 在左側選單點選 **「Pages」**。
-3. 在中間的 **Build and deployment** > **Source** 下拉選單中，選擇 **「GitHub Actions」**。
+3. 在 **Build and deployment** > **Source** 下拉選單中，選擇 **「GitHub Actions」**。
 
 ### 第四階段：查看結果
 1. 點擊上方導覽列的 **「Actions」** 分頁。
-2. 您會看到一個正在跑的 `Deploy to GitHub Pages` 工作。
-3. 等它變成 **綠色勾勾** 後，點進去即可看到您的遊戲網址（網址格式為：`https://derekchen6688.github.io/Pixel-Game/`）。
+2. 您會看到正在跑的 `Deploy to GitHub Pages` 工作。
+3. 等它變成 **綠色勾勾** 後，點進去即可看到您的遊戲網址。
+4. 之後若有修改程式碼，只需在終端機鍵入 `git add .` -> `git commit -m "..."` -> `git push` 即可自動更新。
 
 ---
 

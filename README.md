@@ -162,4 +162,8 @@ git push
 ---
 
 ## 👨‍💻 技術堆疊
-... (略)
+*   前台前端：React 18 + Vite
+*   開發語言：JavaScript, CSS
+*   後端開發：Google Apps Script, Google Sheets
+*   部署工具：GitHub Actions, GitHub Pages
+*   圖片來源：DiceBear Pixel Art API

@@ -119,11 +119,21 @@ git push -u origin main
 2. 在左側選單點選 **「Pages」**。
 3. 在 **Build and deployment** > **Source** 下拉選單中，選擇 **「GitHub Actions」**。
 
-### 第四階段：查看結果
-1. 點擊上方導覽列的 **「Actions」** 分頁。
-2. 您會看到正在跑的 `Deploy to GitHub Pages` 工作。
-3. 等它變成 **綠色勾勾** 後，點進去即可看到您的遊戲網址。
-4. 之後若有修改程式碼，只需在終端機鍵入 `git add .` -> `git commit -m "..."` -> `git push` 即可自動更新。
+### 第四階段：如何線上遊玩 (GitHub Pages)
+
+當上述步驟設定完成後，您可以透過以下兩種方式找到您的遊戲網址：
+
+1.  **從專案首頁找到連結**：
+    *   回到您的 **專案首頁 (Code 分頁)**。
+    *   在右側側標籤往下找一個 **「Deployments」** 區塊。
+    *   點擊 **`github-pages`** 旁邊的連結（或點進去選 **View deployment**）。
+2.  **直接輸入網址**：
+    您的遊戲網址固定格式如下 (請將 `<您的帳號>` 換成您的 GitHub ID)：
+    👉 `https://<您的帳號>.github.io/Pixel-Game/`
+
+> [!TIP]
+> **為什麼打不開？**
+> 請先檢查上方 **「Actions」** 分頁，必須看到名為 `Deploy to GitHub Pages` 的任務出現 **綠色勾勾 ✅**（代表編譯成功）後，連結才會生效。如果是黃色圈圈代表正在處理中，請耐心等候約 1 分鐘。
 
 ---
 

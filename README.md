@@ -119,6 +119,16 @@ git push -u origin main
 2. 在左側選單點選 **「Pages」**。
 3. 在 **Build and deployment** > **Source** 下拉選單中，選擇 **「GitHub Actions」**。
 
+#### 3. 觸發第一次部署 (重要！)
+> 由於您在設定 Secrets 之前可能已經上傳過程式碼，因此需要做一次「小更新」來讓 GitHub Actions 重新抓取您的變數：
+1. 回到 VS Code 終端機，執行以下指令：
+   ```bash
+   git add README.md
+   git commit -m "Trigger deployment with new secrets"
+   git push
+   ```
+2. 這樣 GitHub 就會重新編譯並將您的 API 網址正確打包進去囉！
+
 ### 第四階段：最終確認您的 GitHub 遊戲入口
 
 當上述步驟設定完成且 **Actions** 跑完綠色勾勾後，您可以透過以下方式開啟您的遊戲：

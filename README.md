@@ -22,7 +22,7 @@
 > **絕對不要** 將 `.env` 檔案上傳到 GitHub，裡面包含您的私密 API 網址。本專案已設定 `.gitignore` 來自動過濾它。
 
 ### 3. 安裝與執行
-在終端機 (VS Code Terminal) 執行：
+在 **Antigravity** 的終端機 (Terminal) 中執行：
 ```bash
 npm install
 npm run dev
@@ -72,7 +72,7 @@ npm run dev
 
 ### 第二階段：將程式碼從電腦上傳到 GitHub
 
-在 VS Code 終端機中，依序輸入以下指令：
+在 **Antigravity** 的終端機中，依序輸入以下指令：
 
 ```bash
 # 1. 初始化
@@ -121,7 +121,7 @@ git push -u origin main
 
 #### 3. 觸發第一次部署 (重要！)
 > 由於您在設定 Secrets 之前可能已經上傳過程式碼，因此需要做一次「小更新」來讓 GitHub Actions 重新抓取您的變數：
-1. 回到 VS Code 終端機，執行以下指令：
+1. 回到 **Antigravity** 終端機，執行以下指令：
    ```bash
    git add README.md
    git commit -m "Trigger deployment with new secrets"
@@ -158,7 +158,7 @@ git push -u origin main
 當您修改了程式碼（例如改了 CSS 或文字）想更新到線上時，您可以選擇以下 **任一方式**：
 
 #### 方法 A：視覺化操作 (推薦：適合日常生活)
-1.  點擊 VS Code 左側工具列的 **「Source Control」** (長得像分叉的路徑圖示)。
+1.  點擊 **Antigravity** 左側工具列的 **「Source Control」** (長得像分叉的路徑圖示)。
 2.  在 **Message** 欄位輸入這次改了什麼 (例如：`update: 修改標題顏色`)。
 3.  點擊藍色的 **「Commit」** 按鈕。
 4.  最後點擊按鈕變成 **「Sync Changes」**(同步變更)，就完成自動部署了！
